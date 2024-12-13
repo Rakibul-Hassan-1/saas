@@ -1,7 +1,6 @@
 import pathlib
 from django.shortcuts import render
 from django.http import HttpResponse
-
 from visits.models import PageVisit
 
 this_dir = pathlib.Path(__file__).resolve().parent
@@ -17,7 +16,7 @@ def about_view(request, *args, **kwargs):
         percent = (page_qs.count() * 100.0) / qs.count()
     except:
         percent = 0
-    my_title = "My Page"
+    my_title = "This is Rakibul Hassan"
     html_template = "home.html"
     my_context = {
         "page_title": my_title,

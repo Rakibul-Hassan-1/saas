@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>{% block head_title %}SaaS{% endblock head_title %}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title_name %} Saas {% endblock title_name %}</title>
+    {% include 'base/css.html' %}
   </head>
   <body>
-    {% block content %} replace me {% endblock content %}
+    {% include 'nav/navber.html' %}
+    <h1>{{ myname }}</h1>
+
+    {% block content %}
+    <p>This is template inheritance</p>
+    {% endblock content %} 
+    {% include 'base/js.html' %}
   </body>
 </html>

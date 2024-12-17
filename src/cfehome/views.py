@@ -1,47 +1,25 @@
+from django.http import HttpResponse
 import pathlib
 from django.shortcuts import render
-from django.http import HttpResponse
 from visits.models import PageVisit
-
-this_dir = pathlib.Path(__file__).resolve().parent
-
-def home_view(request, *args, **kwargs):
+# this_dir = pathlib.Path(__file__).resolve().parent
+def home_view(request, *args, **kwargs): 
     return about_view(request, *args, **kwargs)
 
-
 def about_view(request, *args, **kwargs):
+    html_ = ""
     qs = PageVisit.objects.all()
-    page_qs = PageVisit.objects.filter(path=request.path)
+    name = "Rakib"
     try:
-        percent = (page_qs.count() * 100.0) / qs.count()
+        percent = ((qs.count()*100.0)/100)
     except:
         percent = 0
-    my_title = "This is Rakibul Hassan"
-    html_template = "home.html"
-    my_context = {
-        "page_title": my_title,
-        "page_visit_count": page_qs.count(),
+    my_title = {
+        "myname" : name,
+        "page_visits_count": qs.count(),
         "percent": percent,
-        "total_visit_count": qs.count(),
     }
-    PageVisit.objects.create(path=request.path)
-    return render(request, html_template, my_context)
+    html_ = "home.html"
+    PageVisit.objects.create()
+    return render(request, html_,my_title)
 
-
-def my_old_home_page_view(request, *args, **kwargs):
-    my_title = "My Page"
-    my_context = {
-        "page_title": my_title
-    }
-    html_ = """
-    <!DOCTYPE html>
-<html>
-
-<body>
-    <h1>{page_title} anything?</h1>
-</body>
-</html>    
-""".format(**my_context) # page_title=my_title
-    # html_file_path = this_dir / "home.html"
-    # html_ = html_file_path.read_text()
-    return HttpResponse(html_)

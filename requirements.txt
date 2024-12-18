@@ -1,6 +1,10 @@
-Django>=4.2,<5.0
+Django <5.1
 gunicorn
 python-decouple
-psycopg [binary]
+psycopg[binary]
 dj-database-url
 requests
+whitenoise
+django-allauth[socialaccount]
+django-allauth-ui
+django-widget-tweaks

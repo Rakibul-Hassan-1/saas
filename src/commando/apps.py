@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class VisitsConfig(AppConfig):
+class CommandoConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "visits"
+    name = "commando"
